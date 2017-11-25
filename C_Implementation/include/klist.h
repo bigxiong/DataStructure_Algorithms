@@ -1,5 +1,5 @@
-#ifndef _KLIST_H_STANLEY_YUE_2012_11_27
-#define _KLIST_H_STANLEY_YUE_2012_11_27
+#ifndef _KLIST_H
+#define _KLIST_H
 
 #define offsetof(TYPE, MEMBER) ((size_t) &((TYPE *)0)->MEMBER)
 
