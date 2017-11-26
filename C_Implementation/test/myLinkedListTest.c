@@ -3,7 +3,7 @@
 #include"linkedList.h"
 
 typedef struct BusinessNodeStruct {
-    LinkedListNode* node;
+    LinkedListNode node;
     int  id;
     char name[30];
 }BusinessNode;

@@ -27,6 +27,7 @@ int LinkedList_Length(LinkedList* list) {
 	if (list != NULL) {
 		return list->length;
 	}
+	return 0;
 }
 
 int LinkedList_Insert(LinkedList* list, LinkedListNode* node, int pos) {
@@ -63,7 +64,7 @@ LinkedListNode* LinkedList_Get(LinkedList* list, int pos) {
 
 LinkedListNode* LinkedList_Delete(LinkedList* list, int pos) {
 	if (list == NULL || pos < 0) {
-		return -1;
+		return NULL;
 		fprintf(stderr, "Wrong argument.\n");
 	}
 	LinkedListNode* cur = &list->header;
