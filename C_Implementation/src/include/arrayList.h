@@ -8,7 +8,7 @@ typedef void MyArrayListNode;
 typedef struct _ArrayList {
 	int length;         //当前长度
 	int capacity;      //容量
-	unsigned int* data;//数组指针
+	unsigned int** data;//数组指针
 }MyArrayList;
 
 //创建并且返回一个空的ArrayList

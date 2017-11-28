@@ -8,7 +8,7 @@ MyArrayList* ArrayList_Create(int capacity) {
 		return NULL;
 	}
 	memset(list, 0, sizeof(list));
-	list->data = (unsigned int*)malloc(sizeof(unsigned int*) * capacity);
+	list->data = (unsigned int**)malloc(sizeof(unsigned int*) * capacity);
 	if (list->data == NULL) {
 		fprintf(stderr, "malloc data space failed.\n");
 		return NULL;
@@ -61,7 +61,7 @@ int ArrayList_Insert(MyArrayList* list, MyArrayListNode* node, int pos) {
 	for (int i = list->length; i > pos; i--) {
 		list->data[i] = list->data[i - 1];
 	}
-	list->data[pos] = (unsigned int)node;
+	list->data[pos] = (unsigned int*)node;
 	list->length += 1;
 	return 0;
 }
@@ -96,15 +96,16 @@ int grow(MyArrayList* list, int size) {
 	if (size > 2 * list->capacity) {
 		newSize = 2 * list->capacity;
 	}
-	unsigned int* oldData = list->data;
-	unsigned int* newData = malloc(newSize * sizeof(unsigned int*));
+	unsigned int **oldData = list->data;
+	unsigned int **newData = (unsigned int**)malloc(newSize * sizeof(unsigned int*));
 	if (newData == NULL) {
 		fprintf(stderr,"grow capacity failed.\n");
 		return -1;
 	}
+
 	list->data = newData;
-	memset(list->data,0,sizeof(list->data));
-	memcpy(list->data, oldData, sizeof(oldData)*list->length);
+	memset(list->data,0, newSize * sizeof(unsigned int *));
+	memcpy(list->data, oldData, list->length * sizeof(unsigned int *));
 	list->capacity = newSize;
 	free(oldData);
 	return newSize;
